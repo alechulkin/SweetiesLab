@@ -47,6 +47,7 @@ public class ManagementServiceTest {
   @org.junit.jupiter.api.Order(0)
   public void GivenOrderDoesNotExist_WhenCreatingOrder_ThenOrderNotCreatedWithNoValidatorSet_Test() {
     // setup
+    Address.setValidator(null);
 
     // exercise
     assertThrows(
