@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Logger;
 import org.sweetieslab.model.order.Address;
 import org.sweetieslab.model.order.Order;
@@ -33,6 +34,7 @@ public class ManagementService {
 
     private final OperationsService operationsService;
     private final DataService dataService;
+    private final ReentrantLock prepareDeliverLoggingLock = new ReentrantLock();
 
     public ManagementService(OperationsService operationsService, DataService dataService) {
         this.operationsService = operationsService;
@@ -77,7 +79,7 @@ public class ManagementService {
             order.getBuilding(), order.getRoom()));
     }
 
-    public void completeOrder(UUID orderId) {
+    public synchronized void completeOrder(UUID orderId) {
         Order order = dataService.completeOrder(orderId);
         operationsService.completeOrder(order);
         LOGGER.info(COMPLETED_ORDER_MESSAGE.formatted(order.getId(), order.getPancakesCount(),
@@ -91,8 +93,13 @@ public class ManagementService {
     public Order prepareOrder() {
         Order order = operationsService.prepareOrder();
         dataService.prepareOrder(order.getId());
-        LOGGER.info(PREPARED_ORDER_MESSAGE.formatted(order.getId(), order.getPancakesCount(),
-            order.getBuilding(), order.getRoom()));
+        prepareDeliverLoggingLock.lock();
+        try {
+            LOGGER.info(PREPARED_ORDER_MESSAGE.formatted(order.getId(), order.getPancakesCount(),
+                order.getBuilding(), order.getRoom()));
+        } finally {
+            prepareDeliverLoggingLock.unlock();
+        }
         return order;
     }
 
@@ -104,8 +111,14 @@ public class ManagementService {
         Order order = operationsService.deliverOrder();
         UUID orderId = order.getId();
         dataService.removeOrder(orderId);
-        LOGGER.info(DELIVERED_ORDER_MESSAGE.formatted(order.getId(), order.getPancakesCount(),
-            order.getBuilding(), order.getRoom()));
+        prepareDeliverLoggingLock.lock();
+        try {
+            LOGGER.info(DELIVERED_ORDER_MESSAGE.formatted(order.getId(), order.getPancakesCount(),
+                order.getBuilding(), order.getRoom()));
+        } finally {
+            prepareDeliverLoggingLock.unlock();
+        }
+
         return order;
     }
 }
