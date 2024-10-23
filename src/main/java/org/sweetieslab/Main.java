@@ -8,13 +8,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.logging.Logger;
 import org.sweetieslab.model.order.Address;
+import org.sweetieslab.model.order.Order;
 import org.sweetieslab.model.order.validator.AddressValidator;
 import org.sweetieslab.service.CollectionsOperationsService;
 import org.sweetieslab.service.ConcurrentMapDataService;
 import org.sweetieslab.service.ManagementService;
-import org.sweetieslab.workers.Delivery;
+import org.sweetieslab.workers.AbstractPermanentWorker;
 import org.sweetieslab.workers.Disciple;
-import org.sweetieslab.workers.Sensei;
 
 public class Main {
 
@@ -38,8 +38,18 @@ public class Main {
           new CollectionsOperationsService(), new ConcurrentMapDataService());
       try {
         Future<?> discipleFuture = discipleExecutor.submit(new Disciple(managementService));
-        Future<?> senseiFuture = senseiExecutor.submit(new Sensei(managementService));
-        Future<?> deliveryFuture = deliveryExecutor.submit(new Delivery(managementService));
+        Future<?> senseiFuture = senseiExecutor.submit(new AbstractPermanentWorker() {
+          @Override
+          protected Order doAction() {
+            return managementService.prepareOrder();
+          }
+        });
+        Future<?> deliveryFuture = deliveryExecutor.submit(new AbstractPermanentWorker() {
+          @Override
+          protected Order doAction() {
+            return managementService.deliverOrder();
+          }
+        });
         discipleFuture.get();
         senseiFuture.get();
         deliveryFuture.get();

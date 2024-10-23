@@ -88,11 +88,12 @@ public class ManagementService {
         return dataService.listCompletedOrders();
     }
 
-    public void prepareOrder() {
+    public Order prepareOrder() {
         Order order = operationsService.prepareOrder();
         dataService.prepareOrder(order.getId());
         LOGGER.info(PREPARED_ORDER_MESSAGE.formatted(order.getId(), order.getPancakesCount(),
             order.getBuilding(), order.getRoom()));
+        return order;
     }
 
     public Set<UUID> listPreparedOrders() {
