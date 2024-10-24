@@ -1,6 +1,6 @@
 package org.sweetieslab.service;
 
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 import org.sweetieslab.model.order.Order;
 import org.sweetieslab.model.pancakes.PancakeRecipe;
@@ -11,17 +11,15 @@ public interface DataService {
 
   Order getOrder(UUID orderId);
 
-  Order addPancakes(PancakeRecipe pancake, UUID orderId, int number);
+  void addPancakes(PancakeRecipe pancake, UUID orderId, int number);
 
-  Order removePancakes(PancakeRecipe pancake, UUID orderId, int number);
+  void removePancakes(PancakeRecipe pancake, UUID orderId, int number);
 
   Order removeOrder(UUID orderId);
 
-  Set<UUID> listPreparedOrders();
+  boolean orderIsEmpty(UUID orderId);
 
-  Set<UUID> listCompletedOrders();
+  int getPancakesCount(UUID orderId);
 
-  Order completeOrder(UUID orderId);
-
-  void prepareOrder(UUID orderId);
+  List<String> getPancakesDescriptions(UUID orderId);
 }

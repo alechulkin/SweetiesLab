@@ -23,8 +23,8 @@ class PancakeFactoryTest {
   }
 
   @Test
-  void testGetDarkChocolateWhippedCreamPancakeRecipe() {
-    PancakeRecipe pancake = PancakeFactory.getDarkChocolateWhippedCreamPancake();
+  void testGetDarkChocolateWhippedCreamPancakeRecipeRecipe() {
+    PancakeRecipe pancake = PancakeFactory.getDarkChocolateWhippedCreamPancakeRecipe();
     assertNotNull(pancake);
     EnumMap<Ingredient, Integer> ingredients = pancake.getIngredients();
     assertEquals(50, ingredients.get(Ingredient.DARK_CHOCOLATE));
@@ -32,8 +32,8 @@ class PancakeFactoryTest {
   }
 
   @Test
-  void testGetDarkChocolateWhippedCreamHazelnutPancake() {
-    PancakeRecipe pancake = PancakeFactory.getDarkChocolateWhippedCreamHazelnutPancake();
+  void testGetDarkChocolateWhippedCreamHazelnutPancakeRecipe() {
+    PancakeRecipe pancake = PancakeFactory.getDarkChocolateWhippedCreamHazelnutPancakeRecipe();
     assertNotNull(pancake);
     EnumMap<Ingredient, Integer> ingredients = pancake.getIngredients();
     assertEquals(100, ingredients.get(Ingredient.FLOUR));
@@ -44,8 +44,8 @@ class PancakeFactoryTest {
   }
 
   @Test
-  void testGetDarkChocolatePancake() {
-    PancakeRecipe pancake = PancakeFactory.getDarkChocolatePancake();
+  void testGetDarkChocolatePancakeRecipe() {
+    PancakeRecipe pancake = PancakeFactory.getDarkChocolatePancakeRecipe();
     assertNotNull(pancake);
     EnumMap<Ingredient, Integer> ingredients = pancake.getIngredients();
     assertEquals(100, ingredients.get(Ingredient.FLOUR));

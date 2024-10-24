@@ -3,126 +3,48 @@
   <ID>JAVA</ID>
   <OriginalElement>/Users/ochulkin/Library/CloudStorage/OneDrive-Capgemini/Documents/repo/SweetiesLab</OriginalElement>
   <nodes>
-    <node x="-1359.0" y="534.0">org.sweetieslab.model.order.OrderStatus</node>
-    <node x="-1642.5" y="1074.0">org.sweetieslab.workers.Disciple</node>
-    <node x="-1283.0" y="654.0">org.sweetieslab.service.OperationsService</node>
-    <node x="-1839.0" y="894.0">org.sweetieslab.service.ConcurrentMapDataService</node>
-    <node x="-1403.0" y="1014.0">org.sweetieslab.model.order.validator.exception.NotSetAddressValidatorException</node>
-    <node x="-1354.5" y="714.0">org.sweetieslab.model.order.Order</node>
-    <node x="-1691.0" y="534.0">org.sweetieslab.model.pancakes.PancakeRecipe</node>
-    <node x="-1630.5" y="234.0">org.sweetieslab.Main</node>
-    <node x="-1478.0" y="1074.0">org.sweetieslab.workers.Sensei</node>
-    <node x="-1251.5" y="474.0">org.sweetieslab.model.pancakes.Ingredient</node>
-    <node x="-1520.0" y="414.0">org.sweetieslab.model.order.validator.exception.AddressValidationException</node>
-    <node x="-1804.0" y="174.0">org.sweetieslab.model.order.Address</node>
-    <node x="-1651.4639024390244" y="1146.6124227642276">org.sweetieslab.workers.AbstractPermanentWorker</node>
-    <node x="-1365.5" y="894.0">org.sweetieslab.service.CollectionsOperationsService</node>
-    <node x="-1838.5" y="54.0">org.sweetieslab.model.order.validator.AddressValidator</node>
-    <node x="-1660.5" y="354.0">org.sweetieslab.model.order.exception.OrderUpdateException</node>
-    <node x="-1611.0" y="834.0">org.sweetieslab.service.ManagementService</node>
-    <node x="-1799.0" y="714.0">org.sweetieslab.service.DataService</node>
-    <node x="-1694.0" y="654.0">org.sweetieslab.model.pancakes.PancakeFactory</node>
-    <node x="-1581.0" y="474.0">org.sweetieslab.service.exception.OperationsServiceException</node>
-    <node x="-1850.5" y="294.0">org.sweetieslab.service.exception.OrderNotFoundException</node>
-    <node x="-1563.5" y="1014.0">org.sweetieslab.workers.Delivery</node>
+    <node x="-1285.5" y="322.5">org.sweetieslab.service.DataService</node>
+    <node x="-1273.0" y="184.0">org.sweetieslab.service.exception.OrderNotFoundException</node>
+    <node x="-1401.0" y="54.5">org.sweetieslab.model.order.OrderStatus</node>
+    <node x="-1634.0" y="259.0">org.sweetieslab.model.order.validator.exception.NotSetAddressValidatorException</node>
+    <node x="-1584.0" y="184.0">org.sweetieslab.service.exception.OperationsServiceException</node>
+    <node x="-1850.5" y="1805.5">org.sweetieslab.model.pancakes.PancakeFactory</node>
+    <node x="-1325.5" y="1806.5">org.sweetieslab.service.ManagementService</node>
+    <node x="-1743.0" y="84.0">org.sweetieslab.model.order.validator.exception.AddressValidationException</node>
+    <node x="-1120.5" y="1198.5">org.sweetieslab.service.OperationsService</node>
+    <node x="-1478.5" y="1662.5">org.sweetieslab.workers.AbstractPermanentWorker</node>
+    <node x="-1195.0" y="674.5">org.sweetieslab.model.pancakes.Ingredient</node>
+    <node x="-1307.0" y="880.5">org.sweetieslab.model.order.Order</node>
+    <node x="-1479.5" y="1381.5">org.sweetieslab.service.CollectionsOperationsService</node>
+    <node x="-1704.0" y="590.5">org.sweetieslab.service.ConcurrentMapDataService</node>
+    <node x="-1846.5" y="1396.5">org.sweetieslab.model.pancakes.PancakeRecipe</node>
+    <node x="-1593.0" y="1246.5">org.sweetieslab.Main</node>
+    <node x="-1848.5" y="364.5">org.sweetieslab.model.order.validator.AddressValidator</node>
+    <node x="-1836.5" y="166.5">org.sweetieslab.workers.Disciple</node>
+    <node x="-1836.0" y="905.5">org.sweetieslab.model.order.Address</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="org.sweetieslab.model.order.Order" target="org.sweetieslab.model.pancakes.PancakeRecipe" relationship="TO_MANY">
-      <point x="0.0" y="-14.0" />
-      <point x="-1307.0" y="628.0" />
-      <point x="-1607.0" y="628.0" />
-      <point x="0.0" y="14.0" />
-    </edge>
-    <edge source="org.sweetieslab.service.ManagementService" target="org.sweetieslab.service.OperationsService" relationship="TO_ONE">
-      <point x="0.0" y="-14.0" />
-      <point x="-1507.0" y="768.0" />
-      <point x="-1235.0" y="768.0" />
-      <point x="-48.0" y="14.0" />
-    </edge>
-    <edge source="org.sweetieslab.model.order.Order" target="org.sweetieslab.model.order.OrderStatus" relationship="TO_ONE">
-      <point x="0.0" y="-14.0" />
-      <point x="-1307.0" y="608.0" />
-      <point x="-1287.0" y="608.0" />
-      <point x="0.0" y="14.0" />
-    </edge>
-    <edge source="org.sweetieslab.workers.Disciple" target="org.sweetieslab.service.ManagementService" relationship="TO_ONE">
-      <point x="0.0" y="-14.0" />
-      <point x="-1587.0" y="988.0" />
-      <point x="-1507.0" y="988.0" />
-      <point x="-1507.0" y="928.0" />
-      <point x="-1387.0" y="928.0" />
-      <point x="-1387.0" y="808.0" />
-      <point x="-1507.0" y="808.0" />
-      <point x="0.0" y="-14.0" />
-    </edge>
-    <edge source="org.sweetieslab.model.order.Address" target="org.sweetieslab.model.order.validator.AddressValidator" relationship="TO_ONE">
-      <point x="0.0" y="-14.0" />
-      <point x="0.0" y="14.0" />
-    </edge>
     <edge source="org.sweetieslab.service.CollectionsOperationsService" target="org.sweetieslab.model.order.Order" relationship="TO_MANY">
-      <point x="-69.25" y="-14.0" />
-      <point x="-1296.25" y="788.0" />
-      <point x="-1387.0" y="788.0" />
-      <point x="-1387.0" y="688.0" />
-      <point x="-1307.0" y="688.0" />
-      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="-96.5" />
+      <point x="-1310.0" y="1358.0" />
+      <point x="-1210.0" y="1358.0" />
+      <point x="0.0" y="117.5" />
     </edge>
     <edge source="org.sweetieslab.model.pancakes.PancakeFactory" target="org.sweetieslab.model.pancakes.PancakeRecipe" relationship="TO_MANY">
-      <point x="0.0" y="-14.0" />
-      <point x="0.0" y="14.0" />
-    </edge>
-    <edge source="org.sweetieslab.service.CollectionsOperationsService" target="org.sweetieslab.service.OperationsService" relationship="REALIZATION">
-      <point x="69.25" y="-14.0" />
-      <point x="-1157.75" y="868.0" />
-      <point x="-1139.0" y="868.0" />
-      <point x="48.0" y="14.0" />
-    </edge>
-    <edge source="org.sweetieslab.service.ConcurrentMapDataService" target="org.sweetieslab.service.DataService" relationship="REALIZATION">
-      <point x="-66.0" y="-14.0" />
-      <point x="-1773.0" y="868.0" />
-      <point x="-1763.0" y="868.0" />
-      <point x="-36.0" y="14.0" />
-    </edge>
-    <edge source="org.sweetieslab.service.ConcurrentMapDataService" target="org.sweetieslab.model.order.Order" relationship="TO_MANY">
-      <point x="66.0" y="-14.0" />
-      <point x="-1641.0" y="788.0" />
-      <point x="-1387.0" y="788.0" />
-      <point x="-1387.0" y="688.0" />
-      <point x="-1307.0" y="688.0" />
-      <point x="0.0" y="-14.0" />
-    </edge>
-    <edge source="org.sweetieslab.workers.Delivery" target="org.sweetieslab.service.ManagementService" relationship="TO_ONE">
-      <point x="0.0" y="-14.0" />
-      <point x="-1507.0" y="928.0" />
-      <point x="-1387.0" y="928.0" />
-      <point x="-1387.0" y="808.0" />
-      <point x="-1507.0" y="808.0" />
-      <point x="0.0" y="-14.0" />
-    </edge>
-    <edge source="org.sweetieslab.service.ManagementService" target="org.sweetieslab.service.DataService" relationship="TO_ONE">
-      <point x="0.0" y="-14.0" />
-      <point x="-1507.0" y="768.0" />
-      <point x="-1691.0" y="768.0" />
-      <point x="36.0" y="14.0" />
-    </edge>
-    <edge source="org.sweetieslab.workers.Sensei" target="org.sweetieslab.service.ManagementService" relationship="TO_ONE">
-      <point x="0.0" y="-14.0" />
-      <point x="-1427.0" y="988.0" />
-      <point x="-1507.0" y="988.0" />
-      <point x="-1507.0" y="928.0" />
-      <point x="-1387.0" y="928.0" />
-      <point x="-1387.0" y="808.0" />
-      <point x="-1507.0" y="808.0" />
-      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="-152.5" />
+      <point x="-1610.0" y="1778.0" />
+      <point x="-1690.0" y="1778.0" />
+      <point x="0.0" y="81.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Compact" zoom="0.6748156601123595" showDependencies="true" x="-1459.5" y="989.7812032520326" />
-  <SelectedNodes>
-    <node>org.sweetieslab.workers.Disciple</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Compact" zoom="0.3469923567645643" showDependencies="true" x="-1515.1187642276423" y="565.8853550135501" />
+  <SelectedNodes />
   <Categories>
+    <Category>Fields</Category>
     <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

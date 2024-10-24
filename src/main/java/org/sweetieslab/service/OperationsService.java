@@ -1,5 +1,7 @@
 package org.sweetieslab.service;
 
+import java.util.Set;
+import java.util.UUID;
 import org.sweetieslab.model.order.Order;
 
 public interface OperationsService {
@@ -9,4 +11,8 @@ public interface OperationsService {
   Order prepareOrder();
 
   Order deliverOrder();
+
+  Set<UUID> listCompletedOrders();
+
+  Set<UUID> listPreparedOrders();
 }

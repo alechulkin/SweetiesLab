@@ -1,23 +1,22 @@
 package org.sweetieslab.service;
 
-import java.util.concurrent.BlockingDeque;
-import java.util.concurrent.LinkedBlockingDeque;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 import org.sweetieslab.model.order.Order;
 import org.sweetieslab.service.exception.OperationsServiceException;
 
 public class CollectionsOperationsService implements OperationsService {
 
-  private final BlockingDeque<Order> completed = new LinkedBlockingDeque<>();
-  private final BlockingDeque<Order> prepared = new LinkedBlockingDeque<>();
+  public static final long TIMEOUT = 15L;
+  private final BlockingQueue<Order> completed = new LinkedBlockingQueue<>();
+  private final BlockingQueue<Order> prepared = new LinkedBlockingQueue<>();
 
   @Override
   public void completeOrder(Order order) {
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new OperationsServiceException("Interrupted while completing order");
-    }
     try {
       completed.put(order);
     } catch (InterruptedException e) {
@@ -30,7 +29,10 @@ public class CollectionsOperationsService implements OperationsService {
   public Order prepareOrder() {
     Order order;
     try {
-      order = completed.take();
+      order = completed.poll(TIMEOUT, TimeUnit.SECONDS);
+      if (order == null) {
+        return null;
+      }
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
       throw new OperationsServiceException("Interrupted while taking order from completed queue");
@@ -54,11 +56,28 @@ public class CollectionsOperationsService implements OperationsService {
   public Order deliverOrder() {
     Order order;
     try {
-      order = prepared.take();
+      order = prepared.poll(TIMEOUT, TimeUnit.SECONDS);
+      if (order == null) {
+        return null;
+      }
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
       throw new OperationsServiceException("Interrupted while taking order from prepared queue");
     }
     return order;
+  }
+
+  @Override
+  public Set<UUID> listCompletedOrders() {
+    return listOrders(completed);
+  }
+
+  @Override
+  public Set<UUID> listPreparedOrders() {
+    return listOrders(prepared);
+  }
+
+  private Set<UUID> listOrders(BlockingQueue<Order> queue) {
+    return queue.stream().map(Order::getId).collect(Collectors.toSet());
   }
 }

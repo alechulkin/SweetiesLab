@@ -1,4 +1,4 @@
-package org.sweetieslab.model.order.exception;
+package org.sweetieslab.service.exception;
 
 public class OrderUpdateException extends RuntimeException {
 

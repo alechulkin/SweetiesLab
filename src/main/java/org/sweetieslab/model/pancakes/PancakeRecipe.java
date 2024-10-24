@@ -1,6 +1,7 @@
 package org.sweetieslab.model.pancakes;
 
 import java.util.EnumMap;
+import java.util.Objects;
 
 public class PancakeRecipe {
 
@@ -28,5 +29,21 @@ public class PancakeRecipe {
         }
         description.append("!");
         return description.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return ingredients.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof PancakeRecipe)) {
+            return false;
+        }
+        return Objects.equals(ingredients, ((PancakeRecipe) obj).ingredients);
     }
 }

@@ -1,6 +1,10 @@
 package org.sweetieslab;
 
+import static org.sweetieslab.workers.Disciple.NUMBER_OF_ITERATIONS;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -37,7 +41,11 @@ public class Main {
       ManagementService managementService = new ManagementService(
           new CollectionsOperationsService(), new ConcurrentMapDataService());
       try {
-        Future<?> discipleFuture = discipleExecutor.submit(new Disciple(managementService));
+        List<Future<Boolean>> discipleFutures = new ArrayList<>();
+        for (int counter = 1; counter <= NUMBER_OF_ITERATIONS; counter++) {
+          discipleFutures.add(discipleExecutor.submit(new Disciple(managementService,
+              counter)));
+        }
         Future<?> senseiFuture = senseiExecutor.submit(new AbstractPermanentWorker() {
           @Override
           protected Order doAction() {
@@ -50,7 +58,14 @@ public class Main {
             return managementService.deliverOrder();
           }
         });
-        discipleFuture.get();
+        discipleFutures.forEach(df -> {
+          try {
+            df.get();
+          } catch (Exception e) {
+            LOGGER.info(e.getMessage());
+            Thread.currentThread().interrupt();
+          }
+        });
         senseiFuture.get();
         deliveryFuture.get();
       } catch (Exception e) {
